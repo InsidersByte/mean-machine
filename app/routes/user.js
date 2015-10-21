@@ -54,7 +54,9 @@ module.exports = function(app, express) {
         // get the user with that id
         .get(function(req, res) {
             User.findById(req.params.user_id, function(err, user) {
-                if (err) res.send(err);
+                if (err) {
+                    return res.send(err);
+                }
 
                 // return that user
                 res.json(user);
@@ -64,8 +66,9 @@ module.exports = function(app, express) {
         // update the user with this id
         .put(function(req, res) {
             User.findById(req.params.user_id, function(err, user) {
-
-                if (err) res.send(err);
+                if (err) {
+                    return res.send(err);
+                }
 
                 // set the new user information if it exists in the request
                 if (req.body.name) user.name = req.body.name;
@@ -74,7 +77,9 @@ module.exports = function(app, express) {
 
                 // save the user
                 user.save(function(err) {
-                    if (err) res.send(err);
+                    if (err) {
+                        return res.send(err);
+                    }
 
                     // return a message
                     res.json({message: 'User updated!'});
@@ -88,7 +93,9 @@ module.exports = function(app, express) {
             User.remove({
                 _id: req.params.user_id,
             }, function(err, user) {
-                if (err) res.send(err);
+                if (err) {
+                    return res.send(err);
+                }
 
                 res.json({message: 'Successfully deleted'});
             });

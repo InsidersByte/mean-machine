@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-// log all requests to the console 
+// log all requests to the console
 app.use(morgan('dev'));
 
 // connect to our database (hosted on modulus.io)
@@ -41,7 +41,7 @@ app.use(express.static(__dirname + '/public'));
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
 
-// MAIN CATCHALL ROUTE --------------- 
+// MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 app.get('*', function(req, res) {

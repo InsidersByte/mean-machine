@@ -11,7 +11,6 @@ module.exports = function(app, express) {
 
         // create a user (accessed at POST http://localhost:8080/users)
         .post(function(req, res) {
-
             let user = new User();		// create a new instance of the User model
 
             user.name = req.body.name;  // set the users name (comes from the request)
@@ -31,12 +30,10 @@ module.exports = function(app, express) {
                 // return a message
                 res.json({message: 'User created!'});
             });
-
         })
 
         // get all the users (accessed at GET http://localhost:8080/api/users)
         .get(function(req, res) {
-
             User.find({}, function(err, users) {
                 if (err) {
                     return res.send(err);
@@ -71,9 +68,17 @@ module.exports = function(app, express) {
                 }
 
                 // set the new user information if it exists in the request
-                if (req.body.name) user.name = req.body.name;
-                if (req.body.username) user.username = req.body.username;
-                if (req.body.password) user.password = req.body.password;
+                if (req.body.name) {
+                    user.name = req.body.name;
+                }
+
+                if (req.body.username) {
+                    user.username = req.body.username;
+                }
+
+                if (req.body.password) {
+                    user.password = req.body.password;
+                }
 
                 // save the user
                 user.save(function(err) {
@@ -92,7 +97,7 @@ module.exports = function(app, express) {
         .delete(function(req, res) {
             User.remove({
                 _id: req.params.user_id,
-            }, function(err, user) {
+            }, function(err) {
                 if (err) {
                     return res.send(err);
                 }

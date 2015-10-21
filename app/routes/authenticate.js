@@ -7,13 +7,13 @@ module.exports = function(app, express, config) {
     let router = express.Router();
 
     router.post('/', function(req, res) {
-
         // find the user
         User.findOne({
             username: req.body.username,
         }).select('name username password').exec(function(err, user) {
-
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
 
             // no user with that username was found
             if (!user) {
@@ -22,9 +22,9 @@ module.exports = function(app, express, config) {
                     message: 'Authentication failed. User not found.',
                 });
             } else if (user) {
-
                 // check if password matches
-                var validPassword = user.comparePassword(req.body.password);
+                let validPassword = user.comparePassword(req.body.password);
+
                 if (!validPassword) {
                     res.json({
                         success: false,
@@ -33,11 +33,11 @@ module.exports = function(app, express, config) {
                 } else {
                     // if user is found and password is right
                     // create a token
-                    var token = jwt.sign({
+                    let token = jwt.sign({
                         name: user.name,
                         username: user.username,
                     }, config.secret, {
-                        expiresIn: 86400 // expires in 24 hours
+                        expiresIn: 86400, // expires in 24 hours
                     });
 
                     // return the information including token as JSON

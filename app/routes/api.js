@@ -1,17 +1,16 @@
+'use strict';
+
 const User       = require('../models/user');
 const config     = require('../../config');
 const expressJwt = require('express-jwt');
 
 module.exports = function(app, express) {
-
-    var apiRouter = express.Router();
+    let router = express.Router();
 
     // route to generate sample user
-    apiRouter.post('/sample', function(req, res) {
-
+    router.post('/sample', function(req, res) {
         // look for the user named chris
-        User.findOne({ 'username': 'chris' }, function(err, user) {
-
+        User.findOne({ username: 'chris' }, function(err, user) {
             // if there is no chris user, create one
             if (!user) {
                 var sampleUser = new User();
@@ -46,24 +45,24 @@ module.exports = function(app, express) {
         });
     });
 
-    apiRouter.use('/authenticate', require('./authenticate')(app, express, config));
+    router.use('/authenticate', require('./authenticate')(app, express, config));
 
-    apiRouter.use(expressJwt({
+    router.use(expressJwt({
         secret: config.secret,
     }));
 
     // test route to make sure everything is working
     // accessed at GET http://localhost:8080/api
-    apiRouter.get('/', function(req, res) {
+    router.get('/', function(req, res) {
         res.json({ message: 'hooray! welcome to our api!' });
     });
 
-    apiRouter.use('/users', require('./user')(app, express));
+    router.use('/users', require('./user')(app, express));
 
     // api endpoint to get user information
-    apiRouter.get('/me', function(req, res) {
+    router.get('/me', function(req, res) {
         res.send(req.decoded);
     });
 
-    return apiRouter;
+    return router;
 };

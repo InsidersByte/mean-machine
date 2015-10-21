@@ -61,7 +61,7 @@ module.exports = function(app, express) {
 
     // api endpoint to get user information
     router.get('/me', function(req, res) {
-        res.send(req.decoded);
+        res.send(req.user);
     });
 
     return router;

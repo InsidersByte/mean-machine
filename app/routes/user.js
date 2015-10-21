@@ -3,11 +3,11 @@
 const User = require('../models/user');
 
 module.exports = function(app, express) {
-    let apiRouter = express.Router();
+    let router = express.Router();
 
     // on routes that end in /users
     // ----------------------------------------------------
-    apiRouter.route('/')
+    router.route('/')
 
         // create a user (accessed at POST http://localhost:8080/users)
         .post(function(req, res) {
@@ -49,7 +49,7 @@ module.exports = function(app, express) {
 
     // on routes that end in /users/:user_id
     // ----------------------------------------------------
-    apiRouter.route('/:user_id')
+    router.route('/:user_id')
 
         // get the user with that id
         .get(function(req, res) {
@@ -101,5 +101,5 @@ module.exports = function(app, express) {
             });
         });
 
-    return apiRouter;
+    return router;
 };

@@ -23,13 +23,28 @@ module.exports = function(app, express) {
                 sampleUser.username = 'chris';
                 sampleUser.password = 'supersecret';
 
-                sampleUser.save();
+                sampleUser.save(function(err) {
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    // return a message
+                    res.json({ message: 'Sample user created!' });
+                });
             } else {
                 console.log(user);
 
                 // if there is a chris, update his password
                 user.password = 'supersecret';
-                user.save();
+
+                user.save(function(err) {
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    // return a message
+                    res.json({ message: 'Sample user created!' });
+                });
             }
 
         });

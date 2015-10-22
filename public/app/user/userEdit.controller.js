@@ -25,7 +25,7 @@
 
         function activate() {
             User
-                .get($routeParams.user_id)
+                .get($routeParams.userId)
                 .success(function(data) {
                     vm.userData = data;
                 });
@@ -37,7 +37,7 @@
             vm.message = '';
 
             // call the userService function to update
-            User.update($routeParams.user_id, vm.userData)
+            User.update($routeParams.userId, vm.userData)
                 .success(function(data) {
                     vm.processing = false;
 

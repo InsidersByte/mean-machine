@@ -26,7 +26,7 @@
             })
 
             // page to edit a user
-            .when('/users/:user_id', {
+            .when('/users/:userId', {
                 templateUrl: 'app/user/single.html',
                 controller: 'userEditController',
                 controllerAs: 'user',

@@ -46,11 +46,11 @@ module.exports = function(app, express) {
 
     // on routes that end in /users/:user_id
     // ----------------------------------------------------
-    router.route('/:user_id')
+    router.route('/:userId')
 
         // get the user with that id
         .get(function(req, res) {
-            User.findById(req.params.user_id, function(err, user) {
+            User.findById(req.params.userId, function(err, user) {
                 if (err) {
                     return res.send(err);
                 }
@@ -62,7 +62,7 @@ module.exports = function(app, express) {
 
         // update the user with this id
         .put(function(req, res) {
-            User.findById(req.params.user_id, function(err, user) {
+            User.findById(req.params.userId, function(err, user) {
                 if (err) {
                     return res.send(err);
                 }
@@ -96,7 +96,7 @@ module.exports = function(app, express) {
         // delete the user with this id
         .delete(function(req, res) {
             User.remove({
-                _id: req.params.user_id,
+                _id: req.params.userId,
             }, function(err) {
                 if (err) {
                     return res.send(err);

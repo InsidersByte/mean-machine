@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt-nodejs');
 const UserSchema = new Schema({
     name: String,
     username: { type: String, required: true, index: { unique: true }},
-    password: { type: String, required: true, select: false }
+    password: { type: String, required: true, select: false },
 });
 
 // hash the password before the user is saved
@@ -17,11 +17,15 @@ UserSchema.pre('save', function(next) {
     let self = this;
 
     // hash the password only if the password has been changed or user is new
-    if (!self.isModified('password')) return next();
+    if (!self.isModified('password')) {
+        return next();
+    }
 
     // generate the hash
     bcrypt.hash(self.password, null, null, function(err, hash) {
-        if (err) return next(err);
+        if (err) {
+            return next(err);
+        }
 
         // change the password to the hashed version
         self.password = hash;

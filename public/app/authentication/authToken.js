@@ -35,6 +35,6 @@
             } else {
                 $window.localStorage.removeItem('token');
             }
-        };
+        }
     }
 }());

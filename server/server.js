@@ -4,13 +4,12 @@
 // ======================================
 
 // CALL THE PACKAGES --------------------
-const express    = require('express');		// call express
-const app        = express(); 				// define our app using express
-const bodyParser = require('body-parser'); 	// get body-parser
-const morgan     = require('morgan'); 		// used to see requests
-const mongoose   = require('mongoose');
-const config 	   = require('./config/config');
-const path 	   = require('path');
+const express = require('express'); // call express
+const app = express(); // define our app using express
+const bodyParser = require('body-parser'); // get body-parser
+const morgan = require('morgan'); // used to see requests
+const mongoose = require('mongoose');
+const config = require('./config/config');
 
 // APP CONFIGURATION ==================
 // ====================================

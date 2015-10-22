@@ -35,7 +35,6 @@
                     vm.userData = {};
                     vm.message = data.message;
                 });
-
-        };
+        }
     }
 }());

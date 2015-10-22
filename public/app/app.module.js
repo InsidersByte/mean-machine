@@ -19,7 +19,6 @@
         /*
          * Feature areas
          */
-        'app.routes',
         'app.authentication',
         'app.user',
         'app.layout',

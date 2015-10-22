@@ -1,20 +1,14 @@
-angular.module('app.routes', ['ngRoute'])
+(function() {
+    'use strict';
 
-    .config(function($routeProvider, $locationProvider) {
+    angular
+        .module('app.user')
+        .config(config);
 
+    config.$inject = ['$routeProvider'];
+
+    function config($routeProvider) {
         $routeProvider
-
-            // route for the home page
-            .when('/', {
-                templateUrl: 'app/layout/home.html',
-            })
-
-            // login page
-            .when('/login', {
-                templateUrl: 'app/layout/login.html',
-                controller: 'mainController',
-                controllerAs: 'login',
-            })
 
             // show all users
             .when('/users', {
@@ -37,7 +31,5 @@ angular.module('app.routes', ['ngRoute'])
                 controller: 'userEditController',
                 controllerAs: 'user',
             });
-
-        $locationProvider.html5Mode(true);
-
-    });
+    }
+}());

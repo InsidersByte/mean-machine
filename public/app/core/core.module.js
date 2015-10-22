@@ -6,6 +6,7 @@
          * Angular modules
          */
         'ngAnimate',
+        'ngRoute',
 
         /*
          * Our reusable cross app code modules

@@ -8,5 +8,5 @@
     "preset": "airbnb",
 
     "validateIndentation": 4,
-    "safeContextKeyword": ["vm"]
+    "safeContextKeyword": ["vm", "self"]
 }

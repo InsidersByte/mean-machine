@@ -1,6 +1,6 @@
 {
   "name": "mean-machine",
-  "main": "server.js",
+  "main": "./server/server.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",

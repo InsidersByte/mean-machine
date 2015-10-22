@@ -1,7 +1,7 @@
 'use strict';
 
 const User       = require('../models/user');
-const config     = require('../../config');
+const config     = require('../config/config');
 const expressJwt = require('express-jwt');
 
 module.exports = function(app, express) {

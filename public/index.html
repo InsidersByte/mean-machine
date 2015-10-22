@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <!-- endinject -->
 </head>
-<body ng-app="userApp" ng-controller="mainController as main">
+<body ng-app="app" ng-controller="mainController as main">
 
 <!-- NAVBAR -->
 <header>
@@ -49,10 +49,11 @@
 <!-- endbower -->
 
 <!-- inject:js -->
+<script src="/public/app/app.module.js"></script>
 <script src="/public/app/authentication/authentication.module.js"></script>
+<script src="/public/app/core/core.module.js"></script>
 <script src="/public/app/layout/layout.module.js"></script>
 <script src="/public/app/user/user.module.js"></script>
-<script src="/public/app/app.js"></script>
 <script src="/public/app/app.routes.js"></script>
 <script src="/public/app/authentication/authInterceptor.js"></script>
 <script src="/public/app/authentication/authService.js"></script>

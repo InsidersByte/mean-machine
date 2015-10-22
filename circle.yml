@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 4.2.1
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: safe-garden-2085

@@ -28,6 +28,14 @@
       "main": [
         "paper/bootstrap.css"
       ]
+    },
+    "jquery": {
+      "main": [
+      ]
+    },
+    "bootstrap": {
+      "main": [
+      ]
     }
   }
 }

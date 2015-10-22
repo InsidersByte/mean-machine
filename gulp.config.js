@@ -4,7 +4,8 @@ module.exports = function() {
     const client = './public/';
     const server = './server/';
     const clientApp = client + 'app/';
-    const clientStyles = client + 'styles/';
+    const clientAssets = client + 'assets/';
+    const clientStyles = clientAssets + 'css/';
 
     let config = {
         /**
@@ -16,7 +17,7 @@ module.exports = function() {
             './*.js',
         ],
         client: client,
-        css: clientStyles + 'styles.css',
+        css: clientStyles + 'style.css',
         js: [
             clientApp + '**/*.module.js',
             clientApp + '**/*.js',

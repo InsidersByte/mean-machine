@@ -32,3 +32,6 @@ bower_components
 
 # temp files
 .tmp
+
+# build files
+build

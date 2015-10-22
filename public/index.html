@@ -7,14 +7,18 @@
     <!-- FOR ANGULAR ROUTING -->
     <base href="/">
 
+    <!-- build:css styles/lib.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="/bower_components/bootswatch/paper/bootstrap.css" />
     <!-- endbower -->
+    <!-- endbuild -->
 
+    <!-- build:css styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <!-- endinject -->
+    <!-- endbuild -->
 </head>
 <body ng-app="app" ng-controller="mainController as main">
 
@@ -42,12 +46,15 @@
     <div ng-view></div>
 </main>
 
+<!-- build:js js/lib.js -->
 <!-- bower:js -->
 <script src="/bower_components/angular/angular.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-route/angular-route.js"></script>
 <!-- endbower -->
+<!-- endbuild -->
 
+<!-- build:js js/app.js -->
 <!-- inject:js -->
 <script src="/public/app/app.module.js"></script>
 <script src="/public/app/authentication/authentication.module.js"></script>
@@ -67,5 +74,9 @@
 <script src="/public/app/user/userService.js"></script>
 <!-- endinject -->
 
+<!-- inject:templates:js -->
+<!-- endinject -->
+
+<!-- endbuild -->
 </body>
 </html>

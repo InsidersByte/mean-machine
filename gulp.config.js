@@ -30,15 +30,11 @@ module.exports = function() {
         temp,
 
         /**
-         * template cache
+         * Optimised files
          */
-        templateCache: {
-            file: 'templates.js',
-            options: {
-                module: 'app.core',
-                standAlone: false,
-                root: 'app/',
-            },
+        optimised: {
+            app: 'app.js',
+            lib: 'lib.js',
         },
 
         /**
@@ -61,6 +57,18 @@ module.exports = function() {
          */
         nodeServer: server + './server.js',
         defaultPort: '8001',
+
+        /**
+         * template cache
+         */
+        templateCache: {
+            file: 'templates.js',
+            options: {
+                module: 'app.core',
+                standAlone: false,
+                root: 'app/',
+            },
+        },
     };
 
     //////////////////

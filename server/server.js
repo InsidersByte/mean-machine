@@ -33,8 +33,16 @@ mongoose.connect(config.database);
 
 // set static files location
 // used for requests that our frontend will make
-app.use(express.static('./public'));
-app.use(express.static('./'));
+switch (process.env.NODE_ENV){
+    case 'build':
+        app.use(express.static('./build'));
+        break;
+    default:
+        app.use(express.static('./public'));
+        app.use(express.static('./'));
+        app.use(express.static('./tmp'));
+        break;
+}
 
 // ROUTES FOR OUR API =================
 // ====================================
@@ -46,9 +54,20 @@ app.use('/api', apiRoutes);
 // MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
-app.get('*', function(req, res) {
-    res.sendFile('public/index.html', { root: './'});
-});
+switch (process.env.NODE_ENV){
+    case 'build':
+        app.get('*', function(req, res) {
+            res.sendFile('build/index.html', { root: './'});
+        });
+
+        break;
+    default:
+        app.get('*', function(req, res) {
+            res.sendFile('public/index.html', { root: './'});
+        });
+
+        break;
+}
 
 // START THE SERVER
 // ====================================

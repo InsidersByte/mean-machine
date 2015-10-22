@@ -26,17 +26,23 @@ gulp.task('vet', function() {
         .pipe($.jscs.reporter('fail'));
 });
 
-gulp.task('clean-code', function(done) {
-    const files = [].concat(
-        config.temp + '**/*.js',
-        config.build + '**/*.html',
-        config.build + 'js/**/*.js'
-    );
-
-    clean(files, done);
+gulp.task('clean-fonts', function(done) {
+    clean(config.build + 'fonts/**/*.*', done);
 });
 
-gulp.task('templatecache', ['clean-code'], function() {
+gulp.task('fonts', ['clean-fonts'], function() {
+    log('Copying fonts');
+
+    return gulp
+        .src(config.fonts)
+        .pipe(gulp.dest(config.build + 'fonts'));
+});
+
+gulp.task('clean-templatecache', function(done) {
+    clean(config.templateCache.file, done);
+});
+
+gulp.task('templatecache', ['clean-templatecache'], function() {
     log('Creating AngularJS $templateCache');
 
     return gulp
@@ -115,7 +121,7 @@ gulp.task('clean-build', function(done) {
     clean(config.build, done);
 });
 
-gulp.task('build', ['clean-build', 'optimise', 'templatecache'], function() {
+gulp.task('build', ['clean-build', 'optimise', 'templatecache', 'fonts'], function() {
     log('Building everything');
 
     const msg = {

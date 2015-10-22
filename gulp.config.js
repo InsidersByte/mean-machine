@@ -20,6 +20,7 @@ module.exports = function() {
         build: './build/',
         client,
         css: clientStyles + 'style.css',
+        fonts: './bower_components/bootswatch/fonts/**/*.*',
         htmltemplates: clientApp + '**/*.html',
         js: [
             clientApp + '**/*.module.js',

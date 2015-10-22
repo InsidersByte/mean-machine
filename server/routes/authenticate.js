@@ -10,7 +10,7 @@ module.exports = function(app, express, config) {
         // find the user
         User.findOne({
             username: req.body.username,
-        }).select('name username password').exec(function(err, user) {
+        }).select('name username password salt').exec(function(err, user) {
             if (err) {
                 throw err;
             }

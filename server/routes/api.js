@@ -13,7 +13,7 @@ module.exports = function(app, express) {
         User.findOne({ username: 'chris' }, function(err, user) {
             // if there is no chris user, create one
             if (!user) {
-                var sampleUser = new User();
+                let sampleUser = new User();
 
                 sampleUser.name = 'Chris';
                 sampleUser.username = 'chris';
@@ -28,8 +28,6 @@ module.exports = function(app, express) {
                     res.json({ message: 'Sample user created!' });
                 });
             } else {
-                console.log(user);
-
                 // if there is a chris, update his password
                 user.password = 'supersecret';
 

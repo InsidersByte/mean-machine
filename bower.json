@@ -1,0 +1,19 @@
+{
+  "name": "mean-machine",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jonathon Kelly <jonathon.kelly@insidersbyte.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/InsidersByte/mean-machine",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

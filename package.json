@@ -2,12 +2,8 @@
   "name": "mean-machine",
   "main": "./server/server.js",
   "scripts": {
-    "postinstall": "bower install",
-    "prebuild": "npm install",
-    "build": "gulp build",
-    "prestart": "npm install",
+    "postinstall": "bower install && gulp build",
     "start": "node ./server/server.js",
-    "pretest": "npm install",
     "test": "gulp vet"
   },
   "dependencies": {

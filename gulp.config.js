@@ -6,6 +6,7 @@ module.exports = function() {
     const clientApp = client + 'app/';
     const clientAssets = client + 'assets/';
     const clientStyles = clientAssets + 'css/';
+    const temp = './.tmp/';
 
     let config = {
         /**
@@ -16,14 +17,29 @@ module.exports = function() {
             server + '**/*.js',
             './*.js',
         ],
-        client: client,
+        build: './build/',
+        client,
         css: clientStyles + 'style.css',
+        htmltemplates: clientApp + '**/*.html',
         js: [
             clientApp + '**/*.module.js',
             clientApp + '**/*.js',
         ],
         index: client + 'index.html',
-        server: server,
+        server,
+        temp,
+
+        /**
+         * template cache
+         */
+        templateCache: {
+            file: 'templates.js',
+            options: {
+                module: 'app.core',
+                standAlone: false,
+                root: 'app/',
+            },
+        },
 
         /**
          * browser sync

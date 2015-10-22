@@ -27,4 +27,8 @@ build/Release
 node_modules
 bower_components
 
+# Webstorm ide
 .idea
+
+# temp files
+.tmp

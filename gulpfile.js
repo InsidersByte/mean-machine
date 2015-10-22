@@ -5,6 +5,7 @@ const browserSync = require('browser-sync');
 const config = require('./gulp.config')();
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')({lazy: true});
+const del = require('del');
 
 const port = process.env.PORT || config.defaultPort;
 
@@ -23,6 +24,29 @@ gulp.task('vet', function() {
         .pipe($.jscs())
         .pipe($.jscs.reporter())
         .pipe($.jscs.reporter('fail'));
+});
+
+gulp.task('clean-code', function(done) {
+    const files = [].concat(
+        config.temp + '**/*.js',
+        config.build + '**/*.html',
+        config.build + 'js/**/*.js'
+    );
+
+    clean(files, done);
+});
+
+gulp.task('templatecache', ['clean-code'], function() {
+    log('Creating AngularJS $templateCache');
+
+    return gulp
+        .src(config.htmltemplates)
+        .pipe($.minifyHtml({empty: true}))
+        .pipe($.angularTemplatecache(
+            config.templateCache.file,
+            config.templateCache.options
+        ))
+        .pipe(gulp.dest(config.temp));
 });
 
 gulp.task('wiredep', function() {
@@ -48,22 +72,10 @@ gulp.task('inject', ['wiredep'], function() {
 });
 
 gulp.task('serve-dev', ['inject'], function() {
-    serve(true /*isDev*/);
+    serve(true);
 });
 
 ////////////////////////////////
-
-function log(msg) {
-    if (typeof (msg) === 'object') {
-        for (var item in msg) {
-            if (msg.hasOwnProperty(item)) {
-                $.util.log($.util.colors.blue(msg[item]));
-            }
-        }
-    } else {
-        $.util.log($.util.colors.blue(msg));
-    }
-}
 
 function serve(isDev) {
     let debugMode = '--debug';
@@ -136,4 +148,24 @@ function startBrowserSync(isDev) {
     };
 
     browserSync(options);
+}
+
+function clean(path, done) {
+    log('Cleaning: ' + $.util.colors.blue(path));
+    del(path)
+        .then(function() {
+            done();
+        });
+}
+
+function log(msg) {
+    if (typeof (msg) === 'object') {
+        for (var item in msg) {
+            if (msg.hasOwnProperty(item)) {
+                $.util.log($.util.colors.blue(msg[item]));
+            }
+        }
+    } else {
+        $.util.log($.util.colors.blue(msg));
+    }
 }

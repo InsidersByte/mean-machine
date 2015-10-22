@@ -79,6 +79,7 @@ gulp.task('optimise', ['inject'], function() {
     const cssFilter = $.filter('**/*.css', {restore: true});
     const jsLibFilter = $.filter('**/' + config.optimised.lib, {restore: true});
     const jsAppFilter = $.filter('**/' + config.optimised.app, {restore: true});
+    const htmlFilter = $.filter('**/*.html', {restore: true});
 
     return gulp
         .src(config.index)
@@ -102,9 +103,29 @@ gulp.task('optimise', ['inject'], function() {
         .pipe(assets.restore())
         .pipe($.useref())
         .pipe($.revReplace())
+        .pipe(htmlFilter)
+        .pipe($.minifyHtml({empty: true}))
+        .pipe(htmlFilter.restore)
         .pipe(gulp.dest(config.build))
         .pipe($.rev.manifest())
         .pipe(gulp.dest(config.build));
+});
+
+gulp.task('clean-build', function(done) {
+    clean(config.build, done);
+});
+
+gulp.task('build', ['clean-build', 'optimise', 'templatecache'], function() {
+    log('Building everything');
+
+    const msg = {
+        title: 'gulp build',
+        subtitle: 'Deployed to the build folder',
+        message: 'Running `gulp serve-build`',
+    };
+
+    del(config.temp);
+    log(msg);
 });
 
 gulp.task('serve-dev', ['inject'], function() {
@@ -150,7 +171,7 @@ function getNodeOptions(isDev) {
         delayTime: 1,
         env: {
             PORT: port,
-            NODE_ENV: isDev ? 'dev' : 'build',
+            NODE_ENV: isDev ? 'dev' : 'production',
         },
         watch: [config.server],
     };

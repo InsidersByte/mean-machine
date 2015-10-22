@@ -34,7 +34,7 @@ mongoose.connect(config.database);
 // set static files location
 // used for requests that our frontend will make
 switch (process.env.NODE_ENV){
-    case 'build':
+    case 'production':
         app.use(express.static('./build'));
         break;
     default:
@@ -55,7 +55,7 @@ app.use('/api', apiRoutes);
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 switch (process.env.NODE_ENV){
-    case 'build':
+    case 'production':
         app.get('*', function(req, res) {
             res.sendFile('build/index.html', { root: './'});
         });

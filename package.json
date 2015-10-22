@@ -1,6 +1,15 @@
 {
   "name": "mean-machine",
   "main": "./server/server.js",
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "node ./server/server.js",
+
+    "pretest": "npm install",
+    "test": "gulp vet"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",

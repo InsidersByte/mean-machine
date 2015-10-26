@@ -29,8 +29,9 @@
 
             // use the create function in the userService
             User
-                .create(vm.userData)
-                .success(function(data) {
+                .save(vm.userData)
+                .$promise
+                .then(function(data) {
                     vm.processing = false;
                     vm.userData = {};
                     vm.message = data.message;

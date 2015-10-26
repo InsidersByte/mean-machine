@@ -7,6 +7,7 @@
          */
         'ngAnimate',
         'ngRoute',
+        'ngResource',
 
         /*
          * Our reusable cross app code modules

@@ -24,8 +24,9 @@
         }
 
         function loadUsers() {
-            User.all()
-                .success(function(data) {
+            User.query()
+                .$promise
+                .then(function(data) {
                     // when all the users come back, remove the processing variable
                     vm.processing = false;
 
@@ -37,8 +38,10 @@
         function deleteUser(id) {
             vm.processing = true;
 
-            User.delete(id)
-                .success(loadUsers);
+            User
+                .delete({id: id})
+                .$promise
+                .then(loadUsers);
         }
     }
 }());

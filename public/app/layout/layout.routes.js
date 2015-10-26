@@ -18,7 +18,7 @@
             // login page
             .when('/login', {
                 templateUrl: 'app/layout/login.html',
-                controller: 'mainController',
+                controller: 'loginController',
                 controllerAs: 'vm',
             });
 

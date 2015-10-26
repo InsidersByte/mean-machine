@@ -33,7 +33,7 @@
         // happens on response errors
         function responseError(response) {
             // if our server returns a 403 forbidden response
-            if (response.status === 403) {
+            if (response.status === 401) {
                 AuthToken.setToken();
                 $location.path('/login');
             }

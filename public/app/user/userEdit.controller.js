@@ -11,10 +11,6 @@
         /*jshint validthis:true */
         const vm = this;
 
-        // variable to hide/show elements of the view
-        // differentiates between create or edit pages
-        vm.type = 'edit';
-
         vm.processing = false;
         vm.message = '';
         vm.saveUser = saveUser;
@@ -25,8 +21,9 @@
 
         function activate() {
             User
-                .get($routeParams.userId)
-                .success(function(data) {
+                .get({id: $routeParams.userId})
+                .$promise
+                .then(function(data) {
                     vm.userData = data;
                 });
         }
@@ -37,8 +34,10 @@
             vm.message = '';
 
             // call the userService function to update
-            User.update($routeParams.userId, vm.userData)
-                .success(function(data) {
+            User
+                .update({id: $routeParams.userId}, vm.userData)
+                .$promise
+                .then(function(data) {
                     vm.processing = false;
 
                     // clear the form

@@ -12,24 +12,24 @@
 
             // show all users
             .when('/users', {
-                templateUrl: 'app/user/all.html',
-                controller: 'userController',
-                controllerAs: 'user',
+                templateUrl: 'app/user/users.html',
+                controller: 'usersController',
+                controllerAs: 'vm',
             })
 
             // form to create a new user
             // same view as edit page
             .when('/users/create', {
-                templateUrl: 'app/user/single.html',
+                templateUrl: 'app/user/userCreate.html',
                 controller: 'userCreateController',
-                controllerAs: 'user',
+                controllerAs: 'vm',
             })
 
             // page to edit a user
             .when('/users/:userId', {
-                templateUrl: 'app/user/single.html',
+                templateUrl: 'app/user/userEdit.html',
                 controller: 'userEditController',
-                controllerAs: 'user',
+                controllerAs: 'vm',
             });
     }
 }());

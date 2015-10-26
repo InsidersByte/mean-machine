@@ -18,8 +18,8 @@
             // login page
             .when('/login', {
                 templateUrl: 'app/layout/login.html',
-                controller: 'mainController',
-                controllerAs: 'login',
+                controller: 'loginController',
+                controllerAs: 'vm',
             });
 
         $locationProvider.html5Mode(true);

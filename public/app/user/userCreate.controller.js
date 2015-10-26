@@ -11,10 +11,6 @@
         /*jshint validthis:true */
         const vm = this;
 
-        // variable to hide/show elements of the view
-        // differentiates between create or edit pages
-        vm.type = 'create';
-
         vm.processing = false;
         vm.message = '';
         vm.userData = {};

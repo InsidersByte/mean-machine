@@ -20,16 +20,16 @@
             // form to create a new user
             // same view as edit page
             .when('/users/create', {
-                templateUrl: 'app/user/single.html',
+                templateUrl: 'app/user/userCreate.html',
                 controller: 'userCreateController',
-                controllerAs: 'user',
+                controllerAs: 'vm',
             })
 
             // page to edit a user
             .when('/users/:userId', {
-                templateUrl: 'app/user/single.html',
+                templateUrl: 'app/user/userEdit.html',
                 controller: 'userEditController',
-                controllerAs: 'user',
+                controllerAs: 'vm',
             });
     }
 }());

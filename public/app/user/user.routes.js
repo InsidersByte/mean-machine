@@ -12,9 +12,9 @@
 
             // show all users
             .when('/users', {
-                templateUrl: 'app/user/all.html',
-                controller: 'userController',
-                controllerAs: 'user',
+                templateUrl: 'app/user/users.html',
+                controller: 'usersController',
+                controllerAs: 'vm',
             })
 
             // form to create a new user

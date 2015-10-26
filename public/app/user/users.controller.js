@@ -3,11 +3,11 @@
 
     angular
         .module('app.user')
-        .controller('userController', userController);
+        .controller('usersController', usersController);
 
-    userController.$inject = ['User'];
+    usersController.$inject = ['User'];
 
-    function userController(User) {
+    function usersController(User) {
         /*jshint validthis:true */
         const vm = this;
 

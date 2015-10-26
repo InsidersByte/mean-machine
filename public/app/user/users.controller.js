@@ -12,6 +12,7 @@
         const vm = this;
 
         vm.processing = false;
+        vm.users = [];
         vm.deleteUser = deleteUser;
 
         activate();

@@ -19,7 +19,7 @@
             .when('/login', {
                 templateUrl: 'app/layout/login.html',
                 controller: 'mainController',
-                controllerAs: 'login',
+                controllerAs: 'vm',
             });
 
         $locationProvider.html5Mode(true);

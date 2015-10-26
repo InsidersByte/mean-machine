@@ -3,45 +3,28 @@
 const User       = require('../models/user');
 const config     = require('../config/config');
 const expressJwt = require('express-jwt');
+const co         = require('co');
 
 module.exports = function(app, express) {
     let router = express.Router();
 
     // route to generate sample user
-    router.post('/sample', function(req, res) {
-        // look for the user named chris
-        User.findOne({ username: 'chris' }, function(err, user) {
-            // if there is no chris user, create one
-            if (!user) {
-                let sampleUser = new User();
+    router.post('/sample', co.wrap(function*(req, res) {
+        let user = yield User.findOne({username: 'chris'});
 
-                sampleUser.name = 'Chris';
-                sampleUser.username = 'chris';
-                sampleUser.password = 'supersecret';
+        if (!user) {
+            user = new User();
 
-                sampleUser.save(function(err) {
-                    if (err) {
-                        return res.send(err);
-                    }
+            user.name = 'Chris';
+            user.username = 'chris';
+        }
 
-                    // return a message
-                    res.json({ message: 'Sample user created!' });
-                });
-            } else {
-                // if there is a chris, update his password
-                user.password = 'supersecret';
+        user.password = 'supersecret';
 
-                user.save(function(err) {
-                    if (err) {
-                        return res.send(err);
-                    }
+        yield user.save();
 
-                    // return a message
-                    res.json({ message: 'Sample user created!' });
-                });
-            }
-        });
-    });
+        return res.json({ message: 'Sample user created!' });
+    }));
 
     router.use('/authenticate', require('./authenticate')(app, express, config));
 

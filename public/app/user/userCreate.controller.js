@@ -11,10 +11,6 @@
         /*jshint validthis:true */
         const vm = this;
 
-        // variable to hide/show elements of the view
-        // differentiates between create or edit pages
-        vm.type = 'create';
-
         vm.processing = false;
         vm.message = '';
         vm.userData = {};
@@ -29,8 +25,9 @@
 
             // use the create function in the userService
             User
-                .create(vm.userData)
-                .success(function(data) {
+                .save(vm.userData)
+                .$promise
+                .then(function(data) {
                     vm.processing = false;
                     vm.userData = {};
                     vm.message = data.message;

@@ -3,15 +3,16 @@
 
     angular
         .module('app.user')
-        .controller('userController', userController);
+        .controller('usersController', usersController);
 
-    userController.$inject = ['User'];
+    usersController.$inject = ['User'];
 
-    function userController(User) {
+    function usersController(User) {
         /*jshint validthis:true */
         const vm = this;
 
         vm.processing = false;
+        vm.users = [];
         vm.deleteUser = deleteUser;
 
         activate();
@@ -24,8 +25,9 @@
         }
 
         function loadUsers() {
-            User.all()
-                .success(function(data) {
+            User.query()
+                .$promise
+                .then(function(data) {
                     // when all the users come back, remove the processing variable
                     vm.processing = false;
 
@@ -37,8 +39,10 @@
         function deleteUser(id) {
             vm.processing = true;
 
-            User.delete(id)
-                .success(loadUsers);
+            User
+                .delete({id: id})
+                .$promise
+                .then(loadUsers);
         }
     }
 }());
